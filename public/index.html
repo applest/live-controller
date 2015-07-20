@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html ng-app="liveController">
+  <head>
+    <title>Applest Live Controller</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="css/style.css" media="all">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/hammerjs/hammer.min.js"></script>
+    <script>
+      document.addEventListener('touchmove', function(e) {
+        if (window.innerHeight >= document.body.scrollHeight) {
+          e.preventDefault();
+        }
+      }, false);
+    </script>
+    <script>
+      var registerSlider = function(callback) {
+        new Hammer(document.body, {});
+        var sliders = document.querySelector(".sliders");
+        var slider = document.querySelector(".slider");
+        var left = 0;
+        var lastPercent = 0;
+        var sliderFlag = 0;
+        new Hammer(slider, {}).on('panstart', function(ev) {
+          left = parseInt(slider.style.left || 0);
+        });
+        new Hammer(slider, {}).on('pan', function(ev) {
+          if (0 < left+ev.deltaX && left+ev.deltaX < sliders.clientWidth) {
+            slider.style.left = (left+ev.deltaX) + "px";
+            var percent = (left+ev.deltaX)/sliders.clientWidth;
+            percent = Math.max(percent, 0.1);
+            percent = Math.min(percent, 0.9);
+            percent = (percent-0.1)/0.8;
+            if (sliderFlag == -1) {
+              percent = 1-percent;
+            }
+            if (lastPercent != 1 || percent != 1) {
+              if (percent == 1) {
+                sliderFlag = ~sliderFlag;
+              }
+              lastPercent = percent;
+              callback(null, percent)
+            }
+          }
+        });
+      };
+    </script>
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-controller="MainCtrl">
+    <table>
+      <tr>
+        <td class="box time">
+          <span>{{time}}</span>
+        </td>
+
+        <td>
+          <div class="status box float-left">
+            <p class="title">Status</p>
+
+            <div class="part">Server</div>
+            <div class="led green">Connection</div>
+
+            <div class="part">Switcher</div>
+            <div class="led green">ATEM</div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3">
+          <div class="box">
+            <div class="title">
+              Main M/E
+            </div>
+
+            <div class="section">
+              ATEM
+            </div>
+            <div class="channels after-clear">
+              <div class="channel float-left"
+                   ng-repeat="channel in channels"
+                   ng-if="!channel.chainDevice">
+                <div class="button"
+                     ng-class="{green: isPreviewChannel(channel) && !isProgramChannel(channel),
+                                red: isProgramChannel(channel)}"
+                     ng-click="changeInput(channel)">
+                  {{getChannelInput(channel).label}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3">
+          <div class="box">
+            <div class="title">
+              Transition
+            </div>
+
+            <div class="section">
+              Position
+            </div>
+            <div class="channels after-clear">
+              <div class="button float-left"
+                   ng-click="cutTransition()">Cut</div>
+              <div class="button float-left"
+                   ng-class="{red: state[0].video.transitionPosition != 0}"
+                   ng-click="autoTransition()">Auto</div>
+              <div class="button float-left"
+                   ng-class="{red: state[0].video.transitionPreview != 0}"
+                   ng-click="changeTransitionPreview()">PREV</div>
+              <div class="sliders float-left" style="margin-left: 50px;">
+                <div class="slider"></div>
+              </div>
+            </div>
+
+            <div class="inline">
+              <div class="section">
+                Style
+              </div>
+              <div class="channels after-clear">
+                <div class="button float-left"
+                     ng-class="{yellow: state[0].video.transitionStyle == 0}"
+                     ng-click="changeTransitionType(0)">MIX</div>
+                <div class="button float-left"
+                     ng-class="{yellow: state[0].video.transitionStyle == 1}"
+                     ng-click="changeTransitionType(1)">DIP</div>
+                <div class="button float-left"
+                     ng-class="{yellow: state[0].video.transitionStyle == 2}"
+                     ng-click="changeTransitionType(2)">WIPE</div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

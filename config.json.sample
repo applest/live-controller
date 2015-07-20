@@ -1,0 +1,19 @@
+{
+  "switchers": [
+    { "type": "atem", "addr": "172.16.0.101" }
+  ],
+  "channels": [
+    { "device": 0, "input": 1 },
+    { "device": 0, "input": 2 },
+    { "device": 0, "input": 3 },
+    { "device": 0, "input": 4 },
+    { "device": 0, "input": 5 },
+    { "device": 0, "input": 6 },
+    { "device": 0, "input": 7 },
+    { "device": 0, "input": 8 },
+    { "device": 0, "input": 9 },
+    { "device": 0, "input": 10 },
+    { "device": 0, "input": 3010 },
+    { "device": 0, "input": 3020 }
+  ]
+}
