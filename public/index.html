@@ -137,6 +137,23 @@
                      ng-click="changeTransitionType(2)">WIPE</div>
               </div>
             </div>
+
+            <div class="inline">
+              <div class="section">
+                Upstream Key
+              </div>
+              <div class="channels after-clear">
+                <div class="button float-left"
+                     ng-class="{yellow: state[0].video.upstreamKeyNextBackground}"
+                     ng-click="toggleUpstreamKeyNextBackground()">BKGD</div>
+                <div class="button float-left"
+                     ng-class="{yellow: state[0].video.upstreamKeyNextState[0]}"
+                     ng-click="toggleUpstreamKeyNextState(0)">KEY1</div>
+                <div class="button float-left"
+                     ng-class="{red: state[0].video.upstreamKeyState[0]}"
+                     ng-click="toggleUpstreamKeyState(0)">ONAIR</div>
+              </div>
+            </div>
           </div>
         </td>
       </tr>

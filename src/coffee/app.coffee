@@ -83,6 +83,19 @@ angular
       $scope.changeTransitionType = (type) ->
         $http.post('/api/changeTransitionType', type: type).success(defaultSuccess)
 
+      $scope.toggleUpstreamKeyNextBackground = ->
+        state = !$scope.state[0].video.upstreamKeyNextBackground
+        $http.post('/api/changeUpstreamKeyNextBackground', device: 0, state: state).success(defaultSuccess)
+
+      $scope.toggleUpstreamKeyNextState = (number) ->
+        state = !$scope.state[0].video.upstreamKeyNextState[number]
+        console.log $scope.state[0].video.upstreamKeyNextState[number], state
+        $http.post('/api/changeUpstreamKeyNextState', device: 0, number: number, state: state).success(defaultSuccess)
+
+      $scope.toggleUpstreamKeyState = (number) ->
+        state = !$scope.state[0].video.upstreamKeyState[number]
+        $http.post('/api/changeUpstreamKeyState', device: 0, number: number, state: state).success(defaultSuccess)
+
       registerSlider((err, percent) ->
         $scope.changeTransitionPosition(percent);
       )

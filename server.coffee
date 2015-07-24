@@ -69,4 +69,27 @@ app.post('/api/changeTransitionType', (req, res) ->
   res.send('success')
 )
 
+app.post('/api/changeUpstreamKeyState', (req, res) ->
+  device = req.body.device
+  number = req.body.number
+  state  = req.body.state
+  switchers[device].changeUpstreamKeyState(number, state)
+  res.send('success')
+)
+
+app.post('/api/changeUpstreamKeyNextBackground', (req, res) ->
+  device = req.body.device
+  state  = req.body.state
+  switchers[device].changeUpstreamKeyNextBackground(state)
+  res.send('success')
+)
+
+app.post('/api/changeUpstreamKeyNextState', (req, res) ->
+  device = req.body.device
+  number = req.body.number
+  state  = req.body.state
+  switchers[device].changeUpstreamKeyNextState(number, state)
+  res.send('success')
+)
+
 app.listen(8080)
