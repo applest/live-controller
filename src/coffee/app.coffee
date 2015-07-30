@@ -89,7 +89,6 @@ angular
 
       $scope.toggleUpstreamKeyNextState = (number) ->
         state = !$scope.state[0].video.upstreamKeyNextState[number]
-        console.log $scope.state[0].video.upstreamKeyNextState[number], state
         $http.post('/api/changeUpstreamKeyNextState', device: 0, number: number, state: state).success(defaultSuccess)
 
       $scope.toggleUpstreamKeyState = (number) ->
