@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #333;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABIFJREFUeNrEWk1rGzEQXWuX0prQECcQYjAUFvbqs3NMfnz+QyDXQiBpaA+hPRhXMpIrT97MPKXQGhRJu/pYab7ezCR0XTfFMu52u67Uso2eyffyXS7zUpy1Fi37yu9NdYh/tqk1m83GUst26aP3pY4LPtTjUj/Xr6nIder58f232F7I57Itf2WP0ums27AooFBBXUPeYtVe5DIiqmscc7QGsQk8gEdu60OsD9P6HqsNFukACzxIFkLklqxRsdmDfK6tZY0F8/qOEeh86ncpBUtANXZkuaD+tllulN9LOnA+9YsmbPJ20Lj6eRmPFAKaV1MRUVb292uIU5/l9hkrtJ5MaVRA81hKozlB3MaLvBlNBSP50W5ZzOkR5czbBnIi5WWQgxHroPdoPCnMW+WA1iVM8d09EvoyZtD42vpAjRKIly3+1+aAfbcOlf/Ykc1ms8x8t9JkwtIyjC1h+b5x3aRNp4OM3N3dfapPe3t7e2ppLUQVC+oUG6TxvaatCHu13Rfl5CtPk7BwhrEpFvRpmMcZtKp9zn50CxtphxDrn5UC5vE3lNvn5UCsTHgHYICrZ+c6dtP4+5zrj7Gc5vbSA4kWSs7lKj+/sgQbUOboICHpaM0wKbr+Zyzfc/sro16lahXteV5/7sGd5+fnkN8tkCmgoHuhSqFMTRHvFhlgKN5N3lpyz8GD4B5I1CwtMnCmQTMQBeIUqfIHyxojy2v5Ih4CljbFWLeGMX0NTxT27wNaqPU25AfWxk+TO+25IqOTBuVLO8gbQrcshUpujCy2FzBg9spj95a7nodYubNwFfLEEiZjBbcea6lgw8eZNNUux82KeWc8MVYONLnQ5mqs7cjRkQgEJn6E5ODm5uY1CZkXB5P2RMqPxqZWfAvKLAshvBAQG/ph3NtGZHAc1/JCoP8RKI7MmJDJNrf8AOm/a2TXQqKIHbwoDFLp6dn19fVS04QjCjJ70T4POnhxMgcKja1RSai1LPCoxagYO+FpJU97WXZpYDZiLHyttTQoAVhvqrMB1fheBhyYgB9kh6enpwC1A6kEPEPGuMG1QfTYc5YbEN16lPHCqchHsVC0pyjMb9mfxrCYbDxX28zSVkZ0XVr9y9h/THXsniAEERi44IHKFtVqwXkUuMv9x7rWZG782+wU4m3P8jNF7HlpqfmAgtUSMkuojqC7YIt7Vp03tE+kRnwTMm1JtVlazDNujS7D2OIyBAbtahESLdvLQBwme5vCuEg20b4H9fuv/AZrfS0LYM19k0Ns/WcBFp6zGeDGtPgkFUpgsrmpXq/XvzS1ivIbKPiA1KyFnFFkv4qybOu1BtZlVUlahW8AS6zys1XsfrCsuZX08VLXB1dXE1SN56ubvc+qtrdQQXSLf2hC68mBlsc0XV0mD86ESKdpWuX+qhTWO2RVOtjf99M9J6fV1fWUxXuSSoFJcWkyY+EsLTuLWNBLuKJnUs6CyBteXVxcfDHy2n0JASH5QTZF8PwWpRs8h83735RDEFsTbMZAeinp6gK6ojKJ8Z2kuob5yrzfAgwASaYfY2UgQSYAAAAASUVORK5CYII=);
+  font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ','Meiryo','ＭＳ Ｐゴシック',Osaka,sans-serif;
+}
+
+.button {
+  box-sizing: border-box;
+  position: fixed;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 1),
+              0 1px 1px 0 rgba(255, 255, 255, 0.3) inset,
+              0 0 0 50px rgba(255, 255, 255, .1) inset;
+  border-radius: 5px;
+  display: block;
+  line-height: 75px;
+  color: #000;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+}
+.button:before {
+  content: ' ';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  right: 6px;
+  background-color: rgba(255, 255, 255, .7);
+  border-radius: 3px;
+
+  z-index: -2;
+}
+.button.red {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 1),
+              0 1px 1px 0 rgba(255, 255, 255, 0.3) inset,
+              0 0 0 50px rgba(255, 255, 255, .1) inset,
+              0 0 30px 0 red,
+              0 0 30px 5px red inset;
+}
+.button.red:before {
+  background-color: rgba(255, 150, 150, .7);
+}
+.button.green {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 1),
+              0 1px 1px 0 rgba(255, 255, 255, 0.3) inset,
+              0 0 0 50px rgba(255, 255, 255, .1) inset,
+              0 0 30px 0 green,
+              0 0 30px 5px green inset;
+}
+.button.green:before {
+  background-color: rgba(150, 255, 150, .7);
+}
+.button.yellow {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 1),
+              0 1px 1px 0 rgba(255, 255, 255, 0.3) inset,
+              0 0 0 50px rgba(255, 255, 255, .1) inset,
+              0 0 30px 0 rgba(255, 233, 0, 0.8),
+              0 0 10px 5px rgb(255, 194, 0) inset,
+              0 0 50px 13px rgba(255, 165, 0, 0.7) inset;
+}
+.button.yellow:before {
+  background-color: rgba(255, 255, 150, .7);
+}
+
+.button:active {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 1),
+              0 1px 1px 0 rgba(255, 255, 255, 0.3) inset,
+              0 0 0 50px rgba(255, 255, 255, .1) inset,
+              0 0 10px 10px rgba(0, 0, 0, .5) inset;
+}
+.button:active:before {
+  background-color: rgba(150, 150, 150, .7);
+}
+.button:active:after {
+  left: 8px;
+  top: 8px;
+  height: 59px;
+  width: 59px;
+}
+
+.button .label {
+  display: block;
+  position: absolute;
+  top: 45%;
+  left: 0;
+  right: 0;
+  font-size: 130px;
+}

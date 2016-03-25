@@ -4,6 +4,10 @@ bodyParser = require 'body-parser'
 ATEM       = require 'applest-atem'
 config     = require './config.json'
 
+options = {
+  lastProgramChange: new Date().getTime()
+}
+
 switchers = []
 for switcher in config.switchers
   atem = new ATEM
@@ -37,6 +41,10 @@ app.post('/api/changePreviewInput', (req, res) ->
 )
 
 app.post('/api/changeProgramInput', (req, res) ->
+  return if config.options?.enableQuickChangeProtection &&
+    options.lastProgramChange + config.options?.quickChangeProtectionInterval > new Date().getTime()
+
+  options.lastProgramChange = new Date().getTime()
   device = req.body.device
   input  = req.body.input
   switchers[device].changeProgramInput(input)
